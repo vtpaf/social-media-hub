@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社交媒体中心 - Social Media Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- 左侧广告位 -->
+        <div class="ad-space left-ad">
+            <div class="ad-placeholder">
+                <i class="fas fa-ad"></i>
+                <p>左侧广告位</p>
+                <small>300x600</small>
+            </div>
+        </div>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="header">
+                <h1>欢迎来到我的社交媒体中心</h1>
+                <p>连接我的所有社交平台</p>
+            </header>
+
+            <!-- 社交媒体链接区域 -->
+            <section class="social-links">
+                <div class="social-grid">
+                    <a href="#" class="social-card facebook" data-platform="facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        <span>Facebook</span>
+                        <div class="hover-effect"></div>
+                    </a>
+                    
+                    <a href="#" class="social-card instagram" data-platform="instagram">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                        <div class="hover-effect"></div>
+                    </a>
+                    
+                    <a href="#" class="social-card twitter" data-platform="twitter">
+                        <i class="fab fa-twitter"></i>
+                        <span>Twitter</span>
+                        <div class="hover-effect"></div>
+                    </a>
+                    
+                    <a href="#" class="social-card youtube" data-platform="youtube">
+                        <i class="fab fa-youtube"></i>
+                        <span>YouTube</span>
+                        <div class="hover-effect"></div>
+                    </a>
+                    
+                    <a href="#" class="social-card tiktok" data-platform="tiktok">
+                        <i class="fab fa-tiktok"></i>
+                        <span>TikTok</span>
+                        <div class="hover-effect"></div>
+                    </a>
+                    
+                    <a href="#" class="social-card linkedin" data-platform="linkedin">
+                        <i class="fab fa-linkedin-in"></i>
+                        <span>LinkedIn</span>
+                        <div class="hover-effect"></div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- 中央跳转按钮 -->
+            <section class="center-action">
+                <button class="main-cta-button" id="mainButton">
+                    <span class="button-text">访问主网站</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <p class="cta-description">点击访问我们的主要网站</p>
+            </section>
+
+            <!-- 编辑面板 -->
+            <section class="edit-panel" id="editPanel">
+                <h3>编辑设置</h3>
+                <div class="edit-form">
+                    <div class="form-group">
+                        <label for="buttonText">按钮文字:</label>
+                        <input type="text" id="buttonText" value="访问主网站">
+                    </div>
+                    <div class="form-group">
+                        <label for="targetUrl">跳转网址:</label>
+                        <input type="url" id="targetUrl" placeholder="https://example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="buttonDescription">按钮描述:</label>
+                        <input type="text" id="buttonDescription" value="点击访问我们的主要网站">
+                    </div>
+                    <h4>社交媒体链接:</h4>
+                    <div class="social-edit-grid">
+                        <div class="form-group">
+                            <label for="facebookUrl">Facebook:</label>
+                            <input type="url" id="facebookUrl" placeholder="https://facebook.com/yourpage">
+                        </div>
+                        <div class="form-group">
+                            <label for="instagramUrl">Instagram:</label>
+                            <input type="url" id="instagramUrl" placeholder="https://instagram.com/youraccount">
+                        </div>
+                        <div class="form-group">
+                            <label for="twitterUrl">Twitter:</label>
+                            <input type="url" id="twitterUrl" placeholder="https://twitter.com/youraccount">
+                        </div>
+                        <div class="form-group">
+                            <label for="youtubeUrl">YouTube:</label>
+                            <input type="url" id="youtubeUrl" placeholder="https://youtube.com/yourchannel">
+                        </div>
+                        <div class="form-group">
+                            <label for="tiktokUrl">TikTok:</label>
+                            <input type="url" id="tiktokUrl" placeholder="https://tiktok.com/@youraccount">
+                        </div>
+                        <div class="form-group">
+                            <label for="linkedinUrl">LinkedIn:</label>
+                            <input type="url" id="linkedinUrl" placeholder="https://linkedin.com/in/yourprofile">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" id="saveSettings" class="save-btn">保存设置</button>
+                        <button type="button" id="resetSettings" class="reset-btn">重置</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 编辑按钮 -->
+            <button class="edit-toggle" id="editToggle">
+                <i class="fas fa-cog"></i>
+            </button>
+        </main>
+
+        <!-- 右侧广告位 -->
+        <div class="ad-space right-ad">
+            <div class="ad-placeholder">
+                <i class="fas fa-ad"></i>
+                <p>右侧广告位</p>
+                <small>300x600</small>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 社交媒体中心. 保留所有权利.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
