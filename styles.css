@@ -16,15 +16,17 @@ body {
 .container {
     display: flex;
     min-height: 100vh;
-    max-width: 1400px;
+    width: 100%; /* 充满整个网页宽度 */
     margin: 0 auto;
-    gap: 20px;
-    padding: 20px;
+    padding: 0;
+    position: relative; /* 为广告位的绝对定位提供参考 */
 }
 
 /* 主内容区域 */
 .main-content {
-    flex: 1;
+    flex-grow: 1; /* 占据所有可用空间 */
+    max-width: 1200px; /* 限制主内容最大宽度 */
+    margin: 0 auto; /* 居中主内容 */
     background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
     padding: 40px;
@@ -32,6 +34,7 @@ body {
     backdrop-filter: blur(10px);
     position: relative;
     overflow: hidden;
+    z-index: 1; /* 确保主内容在广告位之上 */
 }
 
 .main-content::before {
@@ -194,17 +197,30 @@ body {
 
 /* 广告位样式 */
 .ad-space {
-    width: 300px;
+    position: fixed; /* 悬浮定位 */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 200px; /* 广告位宽度 */
     display: flex;
     flex-direction: column;
     gap: 20px;
+    z-index: 0; /* 确保在主内容之下 */
 }
 
+.left-ad {
+    left: 20px; /* 距离左侧的距离 */
+}
+
+.right-ad {
+    right: 20px; /* 距离右侧的距离 */
+}
+
+/* 广告位占位符样式 */
 .ad-placeholder {
     background: rgba(255, 255, 255, 0.9);
     border: 2px dashed #ddd;
     border-radius: 15px;
-    height: 600px;
+    height: 300px; /* 广告位高度 */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -234,423 +250,12 @@ body {
     color: #bbb;
 }
 
-
-
 /* 页脚 */
 .footer {
     text-align: center;
     padding: 20px;
     color: rgba(255, 255, 255, 0.8);
     font-size: 0.9rem;
-}
-
-/* 响应式设计 */
-/* 大屏幕桌面 (1200px+) */
-@media (min-width: 1200px) {
-    .container {
-        max-width: 1400px;
-    }
-    
-    .ad-space {
-        width: 300px;
-    }
-    
-    .ad-placeholder {
-        height: 600px;
-    }
-    
-    .social-grid {
-        grid-template-columns: repeat(3, 1fr);
-        max-width: 900px;
-    }
-}
-
-/* 中等桌面 (992px - 1199px) */
-@media (max-width: 1199px) and (min-width: 992px) {
-    .ad-space {
-        width: 250px;
-    }
-    
-    .ad-placeholder {
-        height: 500px;
-    }
-    
-    .social-grid {
-        grid-template-columns: repeat(3, 1fr);
-        max-width: 750px;
-    }
-}
-
-/* 平板横屏 (768px - 991px) */
-@media (max-width: 991px) and (min-width: 768px) {
-    .container {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px;
-    }
-    
-    .ad-space {
-        width: 100%;
-        flex-direction: row;
-        justify-content: center;
-        gap: 20px;
-    }
-    
-    .ad-placeholder {
-        height: 180px;
-        flex: 1;
-        max-width: 300px;
-    }
-    
-    .main-content {
-        padding: 35px 25px;
-        order: 2;
-    }
-    
-    .left-ad {
-        order: 1;
-    }
-    
-    .right-ad {
-        order: 3;
-    }
-    
-    .header h1 {
-        font-size: 2.2rem;
-    }
-    
-    .header p {
-        font-size: 1.1rem;
-    }
-    
-    .social-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
-        max-width: 600px;
-    }
-    
-    .social-card {
-        padding: 25px 15px;
-        min-height: 110px;
-    }
-    
-    .social-card i {
-        font-size: 2.2rem;
-    }
-    
-    .main-cta-button {
-        padding: 18px 35px;
-        font-size: 1.2rem;
-    }
-    
-    .edit-panel {
-        width: 85%;
-        max-width: 500px;
-    }
-}
-
-/* 平板竖屏 (576px - 767px) */
-@media (max-width: 767px) and (min-width: 576px) {
-    .container {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px;
-    }
-    
-    .ad-space {
-        width: 100%;
-        flex-direction: row;
-        gap: 15px;
-    }
-    
-    .ad-placeholder {
-        height: 160px;
-        flex: 1;
-    }
-    
-    .main-content {
-        padding: 30px 20px;
-        order: 2;
-    }
-    
-    .left-ad {
-        order: 1;
-    }
-    
-    .right-ad {
-        order: 3;
-    }
-    
-    .header h1 {
-        font-size: 2rem;
-    }
-    
-    .header p {
-        font-size: 1rem;
-    }
-    
-    .social-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        max-width: 500px;
-    }
-    
-    .social-card {
-        padding: 20px 15px;
-        min-height: 100px;
-    }
-    
-    .social-card i {
-        font-size: 2rem;
-    }
-    
-    .main-cta-button {
-        padding: 16px 32px;
-        font-size: 1.1rem;
-    }
-    
-    .edit-panel {
-        width: 90%;
-        padding: 25px;
-    }
-    
-    .social-edit-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-}
-
-/* 手机 (最大575px) */
-@media (max-width: 575px) {
-    .container {
-        flex-direction: column;
-        gap: 10px;
-        padding: 10px;
-    }
-    
-    .ad-space {
-        width: 100%;
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .ad-placeholder {
-        height: 120px;
-        width: 100%;
-    }
-    
-    .main-content {
-        padding: 25px 15px;
-        order: 2;
-    }
-    
-    .left-ad {
-        order: 1;
-    }
-    
-    .right-ad {
-        order: 3;
-    }
-    
-    .header {
-        margin-bottom: 35px;
-    }
-    
-    .header h1 {
-        font-size: 1.8rem;
-        line-height: 1.2;
-    }
-    
-    .header p {
-        font-size: 0.95rem;
-    }
-    
-    .social-links {
-        margin-bottom: 40px;
-    }
-    
-    .social-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        max-width: 100%;
-    }
-    
-    .social-card {
-        padding: 18px 12px;
-        min-height: 90px;
-        font-size: 1rem;
-    }
-    
-    .social-card i {
-        font-size: 1.8rem;
-        margin-bottom: 8px;
-    }
-    
-    .center-action {
-        margin-bottom: 30px;
-    }
-    
-    .main-cta-button {
-        padding: 14px 28px;
-        font-size: 1rem;
-        gap: 10px;
-    }
-    
-    .cta-description {
-        font-size: 0.9rem;
-        margin-top: 12px;
-    }
-    
-    .edit-panel {
-        width: 95%;
-        padding: 20px;
-        max-height: 85vh;
-    }
-    
-    .edit-panel h3 {
-        font-size: 1.3rem;
-        margin-bottom: 20px;
-    }
-    
-    .edit-panel h4 {
-        font-size: 1.1rem;
-        margin: 20px 0 12px 0;
-    }
-    
-    .social-edit-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-    
-    .form-group {
-        margin-bottom: 15px;
-    }
-    
-    .form-group input {
-        padding: 10px 12px;
-        font-size: 0.95rem;
-    }
-    
-    .form-actions {
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 25px;
-    }
-    
-    .save-btn, .reset-btn {
-        padding: 12px 20px;
-        font-size: 0.95rem;
-    }
-    
-    .edit-toggle {
-        width: 50px;
-        height: 50px;
-        bottom: 20px;
-        right: 20px;
-        font-size: 1.2rem;
-    }
-}
-
-/* 超小屏幕 (最大375px) */
-@media (max-width: 375px) {
-    .container {
-        padding: 8px;
-    }
-    
-    .main-content {
-        padding: 20px 12px;
-    }
-    
-    .header h1 {
-        font-size: 1.6rem;
-    }
-    
-    .social-grid {
-        gap: 10px;
-    }
-    
-    .social-card {
-        padding: 15px 10px;
-        min-height: 80px;
-        font-size: 0.9rem;
-    }
-    
-    .social-card i {
-        font-size: 1.6rem;
-    }
-    
-    .main-cta-button {
-        padding: 12px 24px;
-        font-size: 0.95rem;
-    }
-    
-    .edit-panel {
-        padding: 15px;
-    }
-    
-    .ad-placeholder {
-        height: 100px;
-    }
-}
-
-/* 横屏手机优化 */
-@media (max-height: 500px) and (orientation: landscape) {
-    .container {
-        flex-direction: row;
-        gap: 10px;
-    }
-    
-    .ad-space {
-        width: 150px;
-        flex-direction: column;
-    }
-    
-    .ad-placeholder {
-        height: 200px;
-        width: 100%;
-    }
-    
-    .main-content {
-        order: 2;
-        padding: 20px 15px;
-    }
-    
-    .header {
-        margin-bottom: 25px;
-    }
-    
-    .header h1 {
-        font-size: 1.5rem;
-    }
-    
-    .social-links {
-        margin-bottom: 25px;
-    }
-    
-    .social-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-    }
-    
-    .social-card {
-        padding: 12px 8px;
-        min-height: 70px;
-        font-size: 0.85rem;
-    }
-    
-    .social-card i {
-        font-size: 1.4rem;
-        margin-bottom: 5px;
-    }
-    
-    .center-action {
-        margin-bottom: 20px;
-    }
-    
-    .main-cta-button {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
 }
 
 /* 动画效果 */
@@ -676,4 +281,172 @@ body {
 .social-card:nth-child(5) { animation-delay: 0.6s; }
 .social-card:nth-child(6) { animation-delay: 0.7s; }
 
+/* 响应式设计 */
+/* 大屏幕桌面 (1200px+) */
+@media (min-width: 1200px) {
+    .ad-space {
+        width: 200px;
+    }
+    .ad-placeholder {
+        height: 300px;
+    }
+    .social-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 900px;
+    }
+}
+
+/* 中等桌面 (992px - 1199px) */
+@media (max-width: 1199px) and (min-width: 992px) {
+    .ad-space {
+        width: 180px;
+        left: 10px;
+        right: 10px;
+    }
+    .ad-placeholder {
+        height: 250px;
+    }
+    .main-content {
+        padding: 35px 25px;
+    }
+    .header h1 {
+        font-size: 2.2rem;
+    }
+    .header p {
+        font-size: 1.1rem;
+    }
+    .social-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 750px;
+    }
+    .social-card {
+        padding: 25px 15px;
+        min-height: 110px;
+    }
+    .social-card i {
+        font-size: 2.2rem;
+    }
+    .main-cta-button {
+        padding: 18px 35px;
+        font-size: 1.2rem;
+    }
+}
+
+/* 平板横屏 (768px - 991px) */
+@media (max-width: 991px) and (min-width: 768px) {
+    .ad-space {
+        display: none; /* 平板横屏隐藏广告位 */
+    }
+    .container {
+        padding: 15px;
+    }
+    .main-content {
+        padding: 35px 25px;
+    }
+    .header h1 {
+        font-size: 2.2rem;
+    }
+    .header p {
+        font-size: 1.1rem;
+    }
+    .social-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 600px;
+    }
+    .social-card {
+        padding: 25px 15px;
+        min-height: 110px;
+    }
+    .social-card i {
+        font-size: 2.2rem;
+    }
+    .main-cta-button {
+        padding: 18px 35px;
+        font-size: 1.2rem;
+    }
+}
+
+/* 平板竖屏 (576px - 767px) */
+@media (max-width: 767px) and (min-width: 576px) {
+    .ad-space {
+        display: none; /* 平板竖屏隐藏广告位 */
+    }
+    .container {
+        padding: 15px;
+    }
+    .main-content {
+        padding: 30px 20px;
+    }
+    .header h1 {
+        font-size: 2rem;
+    }
+    .header p {
+        font-size: 1rem;
+    }
+    .social-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 500px;
+    }
+    .social-card {
+        padding: 20px 15px;
+        min-height: 100px;
+    }
+    .social-card i {
+        font-size: 2rem;
+    }
+    .main-cta-button {
+        padding: 16px 32px;
+        font-size: 1.1rem;
+    }
+}
+
+/* 手机 (最大575px) */
+@media (max-width: 575px) {
+    .ad-space {
+        display: none; /* 手机端隐藏广告位 */
+    }
+    .container {
+        padding: 10px;
+    }
+    .main-content {
+        padding: 25px 15px;
+    }
+    .header {
+        margin-bottom: 35px;
+    }
+    .header h1 {
+        font-size: 1.8rem;
+        line-height: 1.2;
+    }
+    .header p {
+        font-size: 0.95rem;
+    }
+    .social-links {
+        margin-bottom: 40px;
+    }
+    .social-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        max-width: 100%;
+    }
+    .social-card {
+        padding: 18px 12px;
+        min-height: 90px;
+    }
+    .social-card i {
+        font-size: 1.8rem;
+        margin-bottom: 8px;
+    }
+    .center-action {
+        margin-bottom: 30px;
+    }
+    .main-cta-button {
+        padding: 14px 28px;
+        font-size: 1rem;
+        gap: 10px;
+    }
+    .cta-description {
+        font-size: 0.9rem;
+    }
+}
 
