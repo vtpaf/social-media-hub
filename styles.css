@@ -25,11 +25,11 @@ body {
 /* 主内容区域 */
 .main-content {
     flex-grow: 1; /* 占据所有可用空间 */
-    max-width: 1200px; /* 限制主内容最大宽度 */
-    margin: 0 auto; /* 居中主内容 */
+    max-width: 100%; /* 允许主内容充满宽度 */
+    margin: 0; /* 充满整个宽度 */
     background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    padding: 40px;
+    border-radius: 0; /* 移除圆角 */
+    padding: 40px 80px; /* 调整左右内边距 */
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     position: relative;
@@ -79,7 +79,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
-    max-width: 800px;
+    max-width: 1200px; /* 增加最大宽度以适应全屏 */
     margin: 0 auto;
 }
 
@@ -292,7 +292,7 @@ body {
     }
     .social-grid {
         grid-template-columns: repeat(3, 1fr);
-        max-width: 900px;
+        max-width: 1200px; /* 调整为与全局一致 */
     }
 }
 
@@ -307,8 +307,7 @@ body {
         height: 250px;
     }
     .main-content {
-        padding: 35px 25px;
-    }
+        padding: 40px 60px; /* 调整中等桌面内边距 */
     .header h1 {
         font-size: 2.2rem;
     }
@@ -341,7 +340,7 @@ body {
         padding: 15px;
     }
     .main-content {
-        padding: 35px 25px;
+        padding: 40px 60px; /* 调整平板横屏内边距 */
     }
     .header h1 {
         font-size: 2.2rem;
@@ -375,7 +374,7 @@ body {
         padding: 15px;
     }
     .main-content {
-        padding: 30px 20px;
+        padding: 30px 40px; /* 调整平板竖屏内边距 */
     }
     .header h1 {
         font-size: 2rem;
