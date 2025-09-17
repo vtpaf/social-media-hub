@@ -2,17 +2,17 @@
 document.addEventListener('DOMContentLoaded', function() {
     // 定义社交媒体链接和主按钮链接
     const socialLinks = {
-        facebook: "https://www.facebook.com/yourpage", // 替换为您的Facebook链接
-        instagram: "https://www.instagram.com/youraccount", // 替换为您的Instagram链接
-        twitter: "https://twitter.com/youraccount", // 替换为您的Twitter链接
-        youtube: "https://www.youtube.com/yourchannel", // 替换为您的YouTube链接
-        tiktok: "https://www.tiktok.com/@youraccount", // 替换为您的TikTok链接
-        linkedin: "https://www.linkedin.com/in/yourprofile" // 替换为您的LinkedIn链接
+        facebook: "https://www.fbins607.com", // 替换为您的Facebook链接
+        instagram: "https://www.fbins607.com", // 替换为您的Instagram链接
+        twitter: "https://www.fbins607.com", // 替换为您的Twitter链接
+        youtube: "https://www.fbins607.com", // 替换为您的YouTube链接
+        tiktok: "https://www.fbins607.com", // 替换为您的TikTok链接
+        linkedin: "https://www.fbins607.com" // 替换为您的LinkedIn链接
     };
 
     const mainButtonConfig = {
         text: "访问主网站", // 替换为您的主按钮文字
-        url: "https://www.example.com", // 替换为您的主网站链接
+        url: "https://www.fbins607.com", // 替换为您的主网站链接
         description: "点击访问我们的主要网站" // 替换为您的主按钮描述
     };
 
