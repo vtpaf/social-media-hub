@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>账号教程 - 社交媒体中心</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .tutorials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .tutorial-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tutorial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .tutorial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .tutorial-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .tutorial-icon.text {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+        }
+
+        .tutorial-icon.video {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+        }
+
+        .tutorial-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .tutorial-content {
+            color: #4a5568;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .tutorial-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
+        .tutorial-type {
+            background: #e2e8f0;
+            color: #4a5568;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .tutorial-type.video {
+            background: #fed7d7;
+            color: #c53030;
+        }
+
+        .tutorial-type.text {
+            background: #c6f6d5;
+            color: #2f855a;
+        }
+
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .close {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .close:hover {
+            opacity: 0.7;
+        }
+
+        .modal-body {
+            padding: 30px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            margin-bottom: 20px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .tutorial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #2d3748;
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+
+        .loading i {
+            margin-right: 10px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .no-tutorials {
+            text-align: center;
+            padding: 50px;
+            color: #718096;
+        }
+
+        .no-tutorials i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #cbd5e0;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .tutorials-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .tutorial-card {
+                padding: 20px;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+
+            .modal-body {
+                padding: 20px;
+            }
+
+            .back-btn {
+                position: relative;
+                top: auto;
+                left: auto;
+                display: inline-block;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="https://buyfbliangs.top" class="back-btn">
+        <i class="fas fa-arrow-left"></i> 返回首页
+    </a>
+
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-graduation-cap"></i> 账号教程</h1>
+            <p>学习如何使用和管理您的社交媒体账号</p>
+        </div>
+
+        <div id="loading" class="loading">
+            <i class="fas fa-spinner"></i>
+            正在加载教程...
+        </div>
+
+        <div id="tutorialsContainer" class="tutorials-grid" style="display: none;">
+            <!-- 教程卡片将通过JavaScript动态生成 -->
+        </div>
+
+        <div id="noTutorials" class="no-tutorials" style="display: none;">
+            <i class="fas fa-book-open"></i>
+            <h3>暂无教程</h3>
+            <p>管理员还没有发布任何教程，请稍后再来查看。</p>
+        </div>
+    </div>
+
+    <!-- 教程详情模态框 -->
+    <div id="tutorialModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">教程详情</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- 教程内容将通过JavaScript动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let tutorials = [];
+        const API_BASE_URL = 'https://y0h0i3c8jyeo.manus.space';
+
+        // 加载教程列表
+        async function loadTutorials() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/public/tutorials`);
+                tutorials = await response.json();
+                
+                document.getElementById('loading').style.display = 'none';
+                
+                if (tutorials.length === 0) {
+                    document.getElementById('noTutorials').style.display = 'block';
+                } else {
+                    renderTutorials();
+                    document.getElementById('tutorialsContainer').style.display = 'grid';
+                }
+            } catch (error) {
+                console.error('加载教程失败:', error);
+                document.getElementById('loading').innerHTML = '<i class="fas fa-exclamation-triangle"></i> 加载失败，请刷新页面重试';
+            }
+        }
+
+        // 渲染教程列表
+        function renderTutorials() {
+            const container = document.getElementById('tutorialsContainer');
+            container.innerHTML = tutorials.map(tutorial => `
+                <div class="tutorial-card" onclick="openTutorial(${tutorial.id})">
+                    <div class="tutorial-header">
+                        <div class="tutorial-icon ${tutorial.content_type}">
+                            <i class="fas fa-${tutorial.content_type === 'video' ? 'play' : 'file-text'}"></i>
+                        </div>
+                        <div class="tutorial-title">${tutorial.title}</div>
+                    </div>
+                    <div class="tutorial-content">${tutorial.content}</div>
+                    <div class="tutorial-meta">
+                        <span class="tutorial-type ${tutorial.content_type}">
+                            ${tutorial.content_type === 'video' ? '视频教程' : '文字教程'}
+                        </span>
+                        <span>${new Date(tutorial.created_at).toLocaleDateString()}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 打开教程详情
+        function openTutorial(tutorialId) {
+            const tutorial = tutorials.find(t => t.id === tutorialId);
+            if (!tutorial) return;
+
+            document.getElementById('modalTitle').textContent = tutorial.title;
+            
+            let modalBody = '';
+            if (tutorial.content_type === 'video' && tutorial.video_url) {
+                // 处理YouTube链接
+                let embedUrl = tutorial.video_url;
+                if (tutorial.video_url.includes('youtube.com/watch?v=')) {
+                    const videoId = tutorial.video_url.split('v=')[1].split('&')[0];
+                    embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                } else if (tutorial.video_url.includes('youtu.be/')) {
+                    const videoId = tutorial.video_url.split('youtu.be/')[1].split('?')[0];
+                    embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                }
+
+                modalBody = `
+                    <div class="video-container">
+                        <iframe src="${embedUrl}" allowfullscreen></iframe>
+                    </div>
+                    <div class="tutorial-text">${tutorial.content.replace(/\n/g, '<br>')}</div>
+                `;
+            } else {
+                modalBody = `<div class="tutorial-text">${tutorial.content.replace(/\n/g, '<br>')}</div>`;
+            }
+
+            document.getElementById('modalBody').innerHTML = modalBody;
+            document.getElementById('tutorialModal').style.display = 'block';
+        }
+
+        // 关闭模态框
+        function closeModal() {
+            document.getElementById('tutorialModal').style.display = 'none';
+        }
+
+        // 点击模态框外部关闭
+        window.onclick = function(event) {
+            const modal = document.getElementById('tutorialModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // ESC键关闭模态框
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // 页面加载时获取教程
+        loadTutorials();
+    </script>
+</body>
+</html>
+

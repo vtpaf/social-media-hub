@@ -76,6 +76,14 @@
                     <i class="fas fa-arrow-right"></i>
                 </button>
                 <p class="cta-description">点击访问我们的主要网站</p>
+                
+                <!-- 教程链接 -->
+                <div class="tutorial-link">
+                    <a href="/tutorials.html" class="tutorial-btn">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>查看账号教程</span>
+                    </a>
+                </div>
             </section>
 
 
@@ -94,6 +102,19 @@
     <footer class="footer">
         <p>&copy; 2025 社交媒体账号. 保留所有权利.</p>
     </footer>
+
+    <!-- 公告模态框 -->
+    <div id="announcementModal" class="announcement-modal">
+        <div class="announcement-content">
+            <div class="announcement-header">
+                <h3 id="announcementTitle">公告</h3>
+                <span class="announcement-close" onclick="closeAnnouncement()">&times;</span>
+            </div>
+            <div class="announcement-body" id="announcementBody">
+                <!-- 公告内容将通过JavaScript动态加载 -->
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

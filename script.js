@@ -81,3 +81,67 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+
+// 公告功能
+let announcementShown = false;
+
+// 后端API基础URL
+const API_BASE_URL = 'https://y0h0i3c8jyeo.manus.space';
+
+// 加载并显示公告
+async function loadAnnouncements() {
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/public/announcements/active`);
+        const announcements = await response.json();
+        
+        if (announcements.length > 0 && !announcementShown) {
+            // 显示第一个活跃的公告
+            const announcement = announcements[0];
+            showAnnouncement(announcement.title, announcement.content);
+            announcementShown = true;
+        }
+    } catch (error) {
+        console.error('加载公告失败:', error);
+    }
+}
+
+// 显示公告模态框
+function showAnnouncement(title, content) {
+    const modal = document.getElementById('announcementModal');
+    const titleElement = document.getElementById('announcementTitle');
+    const bodyElement = document.getElementById('announcementBody');
+    
+    titleElement.textContent = title;
+    bodyElement.innerHTML = content.replace(/\n/g, '<br>');
+    modal.style.display = 'block';
+}
+
+// 关闭公告模态框
+function closeAnnouncement() {
+    const modal = document.getElementById('announcementModal');
+    modal.style.display = 'none';
+}
+
+// 点击模态框外部关闭公告
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('announcementModal');
+    if (event.target === modal) {
+        closeAnnouncement();
+    }
+});
+
+// ESC键关闭公告
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeAnnouncement();
+    }
+});
+
+// 页面加载完成后延迟显示公告
+document.addEventListener('DOMContentLoaded', function() {
+    // 延迟2秒后显示公告，让用户先看到主页面
+    setTimeout(() => {
+        loadAnnouncements();
+    }, 2000);
+});
+
