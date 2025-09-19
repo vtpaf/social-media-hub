@@ -83,7 +83,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // 公告功能
-let announcementShown = false;
+// 公告功能
+// let announcementShown = false; // 移除此行，确保每次加载都尝试显示公告
 
 // 后端API基础URL
 const API_BASE_URL = 'https://y0h0i3c8jyeo.manus.space';
